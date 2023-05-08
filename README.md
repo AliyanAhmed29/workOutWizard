@@ -1,39 +1,54 @@
-# workOutWizard
-This is a gym-wellness website built using html, CSS, javascript and bootstrap and the backend is built using php and mysql.
+<div align="center">
+  
+  ![GitHub repo size](https://img.shields.io/github/repo-size/codewithsadee/fitlife)
+  ![GitHub stars](https://img.shields.io/github/stars/codewithsadee/fitlife?style=social)
+  ![GitHub forks](https://img.shields.io/github/forks/codewithsadee/fitlife?style=social)
+  [![Twitter Follow](https://img.shields.io/twitter/follow/codewithsadee?style=social)](https://twitter.com/intent/follow?screen_name=codewithsadee)
+  [![YouTube Video Views](https://img.shields.io/youtube/views/dmif_yP7cZw?style=social)](https://youtu.be/dmif_yP7cZw)
 
+  <br />
+  <br />
 
-README
+  <h2 align="center">Fitlife - Fitness Website</h2>
 
---------------------------------------------------------------------------------
+  Fitlife is a fully responsive fitness website, <br />Responsive for all devices, build using HTML, CSS, and JavaScript.
 
-WORKOUTWIZARD by TEAM 8
-Client: HardKnocks Gym
+  <a href="https://codewithsadee.github.io/fitlife/"><strong>➥ Live Demo</strong></a>
 
---------------------------------------------------------------------------------
-HOST: Local
-WEBSERVER: xampp
-OS: Windows and/or IOS
- 
-A website for Hard Knocks Gym members to track workout/fitness progress, get diet plans, interact with trainers and view workout progress – WorkoutWizard. 
+</div>
 
-User profile: A sphere where users can create and manage their personal profile, set fitness goals and track their progress, view their workout history, enable plan details, etc. 
- 
-Progress tracking: A place for users to track their progress, including weight, body measurements, water consumption and sleep schedules, while viewing their progress based on their goals and plans.  
- 
-Social media sharing: Users can share their progress and milestones on social media platforms such as Instagram, Twitter and Facebook. 
- 
-Video library: Fitness instructors/Trainers can upload videos of special workout routines for users to work with from the comfort of their homes, with interactive tips and recommendations by Hard Knock Gym trainers. 
+<br />
 
------------------------------------------------------------------------------------
+### Demo Screeshots
 
-1. Ensure all the folders (Assets & Code) are installed in the system.
-2. Paste folders in xampp/htdocs/
-3. Database must be connected using phpmyadmin webserver.
-4. Click on /ww-master/ww-master/index.html.
-5. GUI simplified to guide user through detailed steps.
+![Fitlife Desktop Demo](./readme-images/desktop.png "Desktop Demo")
 
------------------------------------------------------------------------------------
+### Prerequisites
 
-ADMIN LOG-IN DETAILS
-email: hardknocksadmin@gmail.com
-password: admin123
+Before you begin, ensure you have met the following requirements:
+
+* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+
+### Run Locally
+
+To run **Fitlife** locally, run this command on your git bash:
+
+Linux and macOS:
+
+```bash
+sudo git clone https://github.com/codewithsadee/fitlife.git
+```
+
+Windows:
+
+```bash
+git clone https://github.com/codewithsadee/fitlife.git
+```
+
+### Contact
+
+If you want to contact with me you can reach me at [Twitter](https://www.twitter.com/codewithsadee).
+
+### License
+
+This project is **free to use** and does not contains any license.

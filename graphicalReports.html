@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Progress - WorkoutWizard</title>
+  
+    <!-- 
+      - custom css link & js link
+    -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/script.js" defer></script>
+    <script src="script.js"></script>
+  
+    <!-- 
+      - google font link
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Catamaran:wght@600;700;800;900&family=Rubik:wght@400;500;800&display=swap"
+      rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    #myChart {
+      width: 70%;
+      margin: 0 auto;
+    }
+    canvas {
+      border: 3px solid grey;
+      display: block;
+      margin: 0 auto;
+    }
+      .containerNew {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 20px;
+        background-color: hsl(210, 50%, 4%);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      .containerNew1 {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      h1Cust {
+        font-family: 'Helvetica', sans-serif;
+        font-weight:bolder;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      input[type="number"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: inset 0 0 5px #fff;
+      }
+      button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: hsl(154, 66%, 54%);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background-color: grey;
+      }
+      .share-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .share-button {
+        margin: 0 10px;
+        width: 120px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+        background-color: hsl(154, 66%, 54%);
+      }
+      .share-button:hover {
+        background-color: grey;
+      }
+  </style>
+</head>
+<body id="top">
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <span class="span">WorkoutWizard</span>
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-sharp" aria-hidden="true"></ion-icon>
+        </button>
+
+        <ul class="navbar-list">
+          <li>
+            <a href="#" class="navbar-link " data-nav-link>Admin</a>
+          </li>
+
+          <li>
+            <a href="#home" class="navbar-link" data-nav-link>Home</a>
+          </li>
+
+          <li>
+            <a href="#profile" class="navbar-link" data-nav-link>Profile</a>
+          </li>
+
+          <li>
+            <a href="#track" class="navbar-link" data-nav-link>Track</a>
+          </li>
+
+          <li>
+            <a href="#progress" class="navbar-link" data-nav-link>Progress</a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link" data-nav-link>Contact Us</a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <a href="#" class="btn btn-secondary">Join Now</a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+
+    </div>
+  </header>
+  <main><article>        
+    <section class="section hero bg-dark" id="home" aria-label="hero">
+      <div class="containerNew">
+      <h1Cust> Username's Progress</h1Cust>
+      <br>
+      <br>
+  <canvas id="myChart"></canvas>
+  <button onclick="goBack()">Go Back</button>
+  <script>
+    // Define the user's goals and current intake
+    const proteinGoal = 100; 
+    const carbGoal = 150;
+    const waterGoal = 2;
+    const proteinIntake = 100;
+    const carbIntake = 40;
+    const waterIntake = 1.5;
+
+    // Calculate the percentage of the user's daily goal that has been met
+    const proteinProgress = proteinIntake / proteinGoal * 100;
+    const carbProgress = carbIntake / carbGoal * 100;
+    const waterProgress = waterIntake / waterGoal * 100;
+
+    // Create the chart
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Protein', 'Carbs', 'Water'],
+        datasets: [{
+          label: '% of Daily Goal',
+          data: [proteinProgress, carbProgress, waterProgress],
+          backgroundColor: [
+            'rgba(60, 215, 148, 0.2)',
+            'rgba(60, 215, 148, 0.2)',
+            'rgba(60, 215, 148, 0.2)'
+          ],
+          borderColor: [
+            'hsl(154, 66%, 54%)',
+            'hsl(154, 66%, 54%)',
+            'hsl(154, 66%, 54%)'
+          ],
+          borderWidth: 5
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+  </div>
+  <br>
+  <div class="containerNew">
+    <h1Cust>Share Your Progress Report</h1Cust>
+    <form>
+      <label for="progress">Progress (out of 100)</label>
+      <input type="number" name="progress" id="progress" min="0" max="100" required>
+    </form>
+    <div class="share-buttons">
+      <button class="share-button" id="twitter-button">Twitter</button>
+      <button class="share-button" id="facebook-button">Facebook</button>
+      <button class="share-button" id="linkedin-button">LinkedIn</button>
+    </div>
+  </div>
+  <script>
+    const shareUrl = 'https://example.com/progress-report';
+    const shareTitle = 'Check out my progress report!';
+    const shareDescription = 'I scored ' + document.getElementById('progress').value + '% on my progress report. How did you do?';
+    const twitterUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareTitle + ' ' + shareUrl);
+    const facebookUrl = 'https://www.facebook.com/share.php?u=' + encodeURIComponent(shareUrl) + '&quote=' + encodeURIComponent(shareTitle);
+    const linkedinUrl = 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(shareUrl) + '&title=' + encodeURIComponent(shareTitle) + '&summary=' + encodeURIComponent(shareDescription);
+    
+    function shareOnTwitter() {
+      window.open(twitterUrl, '_blank');
+    }
+    
+    function shareOnFacebook() {
+      window.open(facebookUrl, '_blank');
+    }
+    
+    function shareOnLinkedIn() {
+      window.open(linkedinUrl, '_blank');
+    }
+    
+    const twitterButton = document.getElementById('twitter-button');
+    const facebookButton = document.getElementById('facebook-button');
+    const linkedinButton = document.getElementById('linkedin-button');
+    
+    twitterButton.addEventListener('click', shareOnTwitter);
+    facebookButton.addEventListener('click', shareOnFacebook);
+    linkedinButton.addEventListener('click', shareOnLinkedIn);
+  </script>
+  </section>
+    </article></main>
+    <footer class="footer">
+      <div class="section footer-top bg-dark has-bg-image">
+        <div class="container">
+          <div class="footer-brand">
+            <a href="#" class="logo">
+              <span class="span">WorkoutWizard</span>
+            </a>
+            <p class="footer-brand-text">
+              By HARDKNOCKS GYM.
+            </p>
+            <div class="wrapper">
+              <ul class="footer-brand-list">
+                <li>
+                  <p class="footer-brand-title">Monday - Friday</p>
+                  <p>7:00 am - 10:00 pm</p>
+                </li>
+                <li>
+                  <p class="footer-brand-title">Saturday - Sunday</p>
+                  <p>7:00 am - 2:00 pm</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+  
+          <ul class="footer-list">
+  
+            <li>
+              <p class="footer-list-title has-before">Find Us</p>
+            </li>
+  
+            <li class="footer-list-item">
+              <div class="icon">
+                <ion-icon name="location" aria-hidden="true"></ion-icon>
+              </div>
+  
+              <address class="address footer-link">
+                436, G-4 , Johar Town, Lahore.
+              </address>
+            </li>
+  
+            <li class="footer-list-item">
+              <div class="icon">
+                <ion-icon name="call" aria-hidden="true"></ion-icon>
+              </div>
+  
+              <div>
+                <a href="tel:+9232172-6305" class="footer-link">+92 32 172-6305</a>
+  
+                <a href="tel:+92422348765" class="footer-link">+92 42 234-8765</a>
+              </div>
+            </li>
+  
+            <li class="footer-list-item">
+              <div class="icon">
+                <ion-icon name="mail" aria-hidden="true"></ion-icon>
+              </div>
+  
+              <div>
+                <a href="mailto:hardknockscom" class="footer-link">info@hardknocks.com</a>
+              </div>
+            </li>
+  
+          </ul>
+        </div>
+      </div>
+  
+    </footer>
+</body>
+</html>

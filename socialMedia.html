@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Share Your Progress Report</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      input[type="number"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: orangered;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background-color: grey;
+      }
+      .share-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .share-button {
+        margin: 0 10px;
+        width: 120px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+        background-color: rgb(32, 81, 178);
+      }
+      .share-button:hover {
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Share Your Progress Report</h1>
+      <form>
+        <label for="progress">Progress (out of 100)</label>
+        <input type="number" name="progress" id="progress" min="0" max="100" required>
+      </form>
+      <div class="share-buttons">
+        <button class="share-button" id="twitter-button">Twitter</button>
+        <button class="share-button" id="facebook-button">Facebook</button>
+        <button class="share-button" id="linkedin-button">LinkedIn</button>
+      </div>
+    </div>
+    <script>
+      const shareUrl = 'https://example.com/progress-report';
+      const shareTitle = 'Check out my progress report!';
+      const shareDescription = 'I scored ' + document.getElementById('progress').value + '% on my progress report. How did you do?';
+      const twitterUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareTitle + ' ' + shareUrl);
+      const facebookUrl = 'https://www.facebook.com/share.php?u=' + encodeURIComponent(shareUrl) + '&quote=' + encodeURIComponent(shareTitle);
+      const linkedinUrl = 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(shareUrl) + '&title=' + encodeURIComponent(shareTitle) + '&summary=' + encodeURIComponent(shareDescription);
+      
+      function shareOnTwitter() {
+        window.open(twitterUrl, '_blank');
+      }
+      
+      function shareOnFacebook() {
+        window.open(facebookUrl, '_blank');
+      }
+      
+      function shareOnLinkedIn() {
+        window.open(linkedinUrl, '_blank');
+      }
+      
+      const twitterButton = document.getElementById('twitter-button');
+      const facebookButton = document.getElementById('facebook-button');
+      const linkedinButton = document.getElementById('linkedin-button');
+      
+      twitterButton.addEventListener('click', shareOnTwitter);
+      facebookButton.addEventListener('click', shareOnFacebook);
+      linkedinButton.addEventListener('click', shareOnLinkedIn);
+    </script>
+  <body/>
+<html/>    
